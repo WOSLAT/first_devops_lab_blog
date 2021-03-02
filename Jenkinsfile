@@ -40,7 +40,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${User} --tags "remove"'
+                    sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${USER} --tags "remove"'
                 }
             }
         }
