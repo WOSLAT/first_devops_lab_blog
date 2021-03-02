@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
-                sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${User} --tags "create"' 
+                script {
+                    sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${User} --tags "create"' 
+                }
             }
         }
         stage('Test') {
@@ -38,7 +39,9 @@ pipeline {
         }
         stage('Cleanup') {
             steps {
-                sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${User} --tags "remove"'
+                script {
+                    sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${User} --tags "remove"'
+                }
             }
         }
     }
