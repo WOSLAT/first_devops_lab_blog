@@ -4,7 +4,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${User} --tags "create"' 
+                    sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ${USER} --tags "create"' 
                 }
             }
         }
@@ -24,12 +24,12 @@ pipeline {
                         exit 0
                     }
 
-					ISSUE = [fields: [ project: [key: "${Jira_Project}"],
+					ISSUE = [fields: [ project: [key: "${JIRA_PROJECT}"],
 							summary: "Issue encountered in build ${currentBuild.number}",
 							description: "JIRA issue created from Jenkins build ${currentBuild.number}",
 							issuetype: [name: "Issue"]]]
 
-					RESPONSE = jiraNewIssue issue: ISSUE, site: "${Jira_Cloud_Name}"
+					RESPONSE = jiraNewIssue issue: ISSUE, site: "${JIRA_CLOUD}"
 
 					echo RESPONSE.successful.toString()
 					echo RESPONSE.data.toString()
