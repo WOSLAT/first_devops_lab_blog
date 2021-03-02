@@ -27,7 +27,7 @@ pipeline {
 					ISSUE = [fields: [ project: [key: "${JIRA_PROJECT}"],
 							summary: "Issue encountered in build ${currentBuild.number}",
 							description: "JIRA issue created from Jenkins build ${currentBuild.number}",
-							issuetype: [name: "Issue"]]]
+							issuetype: [name: "Task"]]]
 
 					RESPONSE = jiraNewIssue issue: ISSUE, site: "${JIRA_CLOUD}"
 
