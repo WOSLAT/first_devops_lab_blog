@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
+                sh 'export ANSIBLE_HOST_KEY_CHECKING=False'
                 sh 'ansible-playbook ./hello_world.yml -i /etc/ansible/inventory -u ubuntu --tags "create"' 
             }
         }
